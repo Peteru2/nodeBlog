@@ -2,7 +2,7 @@ var http = require('http');
 var fs = require('fs');
 
 var host = '127.0.0.1';
-var port = '5000';
+var port = '4000';
 
 
 
@@ -15,12 +15,21 @@ let path = './Views/';
     switch(req.url){
         case'/':
         path += "/index.html"
+        res.statusCode = 200
         break
         case '/about':
         path += "/about.html"
+        res.statusCode = 200
+        break
+        case '/about-me':
+        res.setHeader('Location','/about')
+        res.statusCode = 301
+        res.end()
         break
         default:
         path += "/404.html"
+        res.statusCode = 404
+
         break
 
     }
