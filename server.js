@@ -1,15 +1,16 @@
-var http = require('http');
-var fs = require('fs');
-
-var host = '127.0.0.1';
-var port = '4000';
+const http = require('http');
+const fs = require('fs');
+const _ = require('lodash') 
 
 
+const host = '127.0.0.1';
+const port = '4000';
 
-var server = http.createServer(function(req, res){
+const  server = http.createServer(function(req, res){
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
 
+    console.log(_.random(1, 30))
 let path = './Views/';
 
     switch(req.url){
