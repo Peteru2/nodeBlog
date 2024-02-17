@@ -20,17 +20,12 @@ app.use(morgan('dev'));
 app.use(express.static('public'))
 
 app.get('/', (req,res)=>{
-    const blogs = [
-        {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-        {title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-        {title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur'},
-      ];
-    res.render('index', {title: "Home", blogs})
+    res.redirect('blogs')
 })
 
 app.get('/add-blog', (req,res)=>{
    const blog = new Blog({
-    title: 'New Blog',
+    title: 'New Blog 2',
     snippet: "It is done",
     body: "Yeah it is done",
    })
@@ -43,14 +38,20 @@ app.get('/add-blog', (req,res)=>{
             console.log(err)
         })
 })
+
 app.get('/about', (req,res)=>{
     res.render('about', {title: "About"})
 })
 app.get('/blog/create', (req,res)=>{
     res.render('create', {title: "Create"})
 })
-
-
+app.get('/blogs', (req, res)=>{
+    Blog.find().sort({createdAt: -1})
+        .then((result) =>{
+            res.render('index', {title: "All blogs", blogs: result })
+        })
+    
+})
 app.use((req, res)=>{
     res.status(404).render('404', {title: "404"})
 })
