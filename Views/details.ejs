@@ -14,8 +14,22 @@
                             <p><%= blog.snippet %></p>
                             <p><%= blog.body %></p>
                       
+                            <a href="" class="delete" data-doc="<%= blod._id %>"><button>Delete</button></a>
                 </div>
     </body>
+    <script>
+        const delet = document.querySelector('.delete');
+
+        const endpoint = `/blogs/${delet.dataset.doc}`
+
+        fetch(endpoint, {
+            method: "DELETE"
+        })
+        .then()
+        .catch((err) =>{
+            console.log(err)
+        })
+    </script>
     </html>
 </body>
 </html>
