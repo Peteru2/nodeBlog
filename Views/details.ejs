@@ -14,7 +14,7 @@
                             <p><%= blog.snippet %></p>
                             <p><%= blog.body %></p>
                       
-                            <a href="" class="delete" data-doc="<%= blod._id %>"><button>Delete</button></a>
+                            <a href="" class="delete" data-doc="<%= blog._id %>"><button>Delete</button></a>
                 </div>
     </body>
     <script>
@@ -25,7 +25,8 @@
         fetch(endpoint, {
             method: "DELETE"
         })
-        .then()
+        .then((response) => response.json())
+        .then((data) => window.location.href = data.redirect)
         .catch((err) =>{
             console.log(err)
         })
