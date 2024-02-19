@@ -13,7 +13,11 @@ const blog_createGet = (req, res) =>{
 }
 
 const blog_createPost = (req, res) =>{
-    const blog = new Blog(req.body)
+    const accountNumber = Math.floor(100000 + Math.random() * 900000);
+    const blog = new Blog({
+        ...req.body, 
+        accountNumber: accountNumber
+      });
     blog.save()
         .then((result) =>{
             res.redirect('/blogs')

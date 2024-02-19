@@ -13,6 +13,10 @@ const blogSchema = new Schema({
     body:{
         type: String,
         required: true,
+    },
+    accountNumber:{
+        type: Number,
+        required: true,
     }
 }, {timestamps: true});
 
